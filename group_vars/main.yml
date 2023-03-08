@@ -10,4 +10,4 @@ ntp_manage_config: true
 openvpn_firewall: auto
 openvpn_proto: udp
 openvpn_port: 4300
-main_nodes_ips: "{{ groups['all'] | map('extract', hostvars, ['ansible_all_ipv4_addresses']) | flatten }}"
+vpn_main_nodes_ips: "{{ groups['vpn'] | map('extract', hostvars, ['ansible_all_ipv4_addresses']) | flatten }}"
