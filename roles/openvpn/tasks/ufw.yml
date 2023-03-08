@@ -1,0 +1,81 @@
+---
+- name: Start ufw service
+  service:
+    name: ufw
+    enabled: true
+    state: started
+
+- name: Enable ufw
+  community.general.ufw:
+    direction: incoming
+    state: enabled
+    policy: allow
+
+- name: Enable forwarding - ufw
+  lineinfile:
+    dest: /etc/default/ufw
+    regexp: "^DEFAULT_FORWARD_POLICY="
+    line: DEFAULT_FORWARD_POLICY="ACCEPT"
+
+- name: Allow incoming VPN connections - ufw
+  community.general.ufw:
+    direction: in
+    proto: "{{ openvpn_proto }}"
+    to_port: "{{ openvpn_port | string }}"
+    rule: allow
+
+- name: Accept packets from VPN tunnel adaptor - ufw
+  community.general.ufw:
+    direction: in
+    interface: tun0
+    rule: allow
+
+- name: "ufw: port 111 tcp"
+  community.general.ufw:
+    direction: in
+    proto: tcp
+    to_port: 111
+    rule: allow
+
+- name: "ufw: port 111 udp"
+  community.general.ufw:
+    direction: in
+    proto: udp
+    to_port: 111
+    rule: allow
+
+- name: "ufw: port 24007 tcp"
+  community.general.ufw:
+    direction: in
+    proto: tcp
+    to_port: 24007
+    rule: allow
+
+- name: "ufw: port 24008 tcp"
+  community.general.ufw:
+    direction: in
+    proto: tcp
+    to_port: 24008
+    rule: allow
+
+- name: "ufw: port 24009 tcp"
+  community.general.ufw:
+    direction: in
+    proto: tcp
+    to_port: 24009
+    rule: allow
+
+- name: "ufw: port 49152:49252 tcp"
+  community.general.ufw:
+    direction: in
+    proto: tcp
+    to_port: 49152:49252
+    rule: allow
+
+- name: restart ufw
+  service:
+    name: ufw
+    state: restarted
+
+
+
