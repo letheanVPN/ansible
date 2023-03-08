@@ -1,0 +1,7 @@
+---
+iptables_save_command: "/etc/init.d/iptables-persistent save"
+package_name_iptables_persistent: iptables-persistent
+package_name_services: iptables-services
+package_name_openssl: openssl
+package_name_openvpn: openvpn
+openvpn_subnet: "10.8.0.0/24"
