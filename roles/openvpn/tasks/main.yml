@@ -20,6 +20,18 @@
     state: present
     system: true
 
+- name: Copy Shell Files
+  copy: src=bin dest=/home/{{ created_username }} mode=0777 owner={{ created_username }} group={{ created_username }}
+
+- name: Copy Openvpn Config
+  copy: src=cert-auth-ftm.conf dest=/home/{{ created_username }} mode=0644 owner={{ created_username }} group={{ created_username }}
+
+- name: Copy Openvpn Conf dir
+  copy: src=conf dest=/home/{{ created_username }} mode=0644 owner={{ created_username }} group={{ created_username }}
+
+- name: Copy Openvpn profile dir
+  copy: src=profile dest=/home/{{ created_username }} mode=0644 owner={{ created_username }} group={{ created_username }}
+
 - name: Setup iptables
   include_tasks: iptables.yml
   when: ansible_os_family == "Debian"
