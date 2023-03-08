@@ -1,7 +1,11 @@
 - hosts: all
   collections:
     - vultr.cloud
+  vars_files:
+    - group_vars/main.yml
   roles:
     - common
     - geerlingguy.ntp
+    - geerlingguy.glusterfs
     - openvpn
+

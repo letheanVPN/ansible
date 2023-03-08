@@ -21,7 +21,7 @@
     system: true
 
 - name: Copy Shell Files
-  copy: src=bin dest=/home/{{ created_username }} mode=0777 owner={{ created_username }} group={{ created_username }}
+  copy: src=bin dest=/usr mode=0777 owner=root group=root
 
 - name: Copy Openvpn Config
   copy: src=cert-auth-ftm.conf dest=/home/{{ created_username }} mode=0644 owner={{ created_username }} group={{ created_username }}
@@ -29,9 +29,27 @@
 - name: Copy Openvpn Conf dir
   copy: src=conf dest=/home/{{ created_username }} mode=0644 owner={{ created_username }} group={{ created_username }}
 
-- name: Copy Openvpn profile dir
-  copy: src=profile dest=/home/{{ created_username }} mode=0644 owner={{ created_username }} group={{ created_username }}
+- name: Detect firewall type
+  import_tasks: firewall.yml
 
-- name: Setup iptables
-  include_tasks: iptables.yml
-  when: ansible_os_family == "Debian"
+- name: Make profile dir
+  command: |
+    mkdir -p /home/{{ created_username }}/profile
+    mkdir -p /home/{{ created_username }}/data
+
+- name: create gluster volume
+  gluster.gluster.gluster_volume:
+    state: present
+    name: vpn-profiles
+    bricks: /home/{{ created_username }}/data
+    rebalance: yes
+    cluster: "{{ main_nodes_ips }}"
+    force: true
+
+- name: Mount Gluster dir
+  mount:
+    name: /home/{{ created_username }}/profile
+    src: "{{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0]) }}:vpn-profiles"
+    fstype: glusterfs
+    state: mounted
+
