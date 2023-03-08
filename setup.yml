@@ -1,4 +1,4 @@
-- hosts: europe
+- hosts: all
   collections:
     - vultr.cloud
   vars_files:
