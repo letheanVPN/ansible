@@ -7,3 +7,7 @@ package_name_openvpn: openvpn
 openvpn_subnet: "10.8.0.0/24"
 created_username: "lthn"
 ntp_manage_config: true
+openvpn_firewall: auto
+openvpn_proto: udp
+openvpn_port: 4300
+main_nodes_ips: "{{ groups['all'] | map('extract', hostvars, ['ansible_all_ipv4_addresses']) | flatten }}"
