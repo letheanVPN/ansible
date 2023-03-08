@@ -6,5 +6,5 @@ ansible-galaxy collection install -r requirements.yml
 ## Run Deploy
 
 ```shell
-ansible-playbook deploy.yml 
+ansible-playbook setup.yml 
 ```

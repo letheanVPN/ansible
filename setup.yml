@@ -1,0 +1,8 @@
+- hosts: europe
+  collections:
+    - vultr.cloud
+  vars_files:
+    - group_vars/main.yml
+  roles:
+    - common
+    - openvpn

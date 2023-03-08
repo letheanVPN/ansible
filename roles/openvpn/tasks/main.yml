@@ -1,11 +1,4 @@
 ---
-- name: Include vars for OpenVPN installation
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "../vars/{{ ansible_distribution }}{{ ansible_distribution_major_version }}.yml"
-    - "../vars/{{ ansible_distribution }}.yml"
-    - "../vars/{{ ansible_os_family }}.yml"
-    - "../vars/main.yml"
 - name: Install iptables-persistent (Debian/Ubuntu)
   package:
     name: "{{ package_name_iptables_persistent }}"
@@ -13,7 +6,7 @@
   register: __iptables_installed
   when: ansible_os_family == "Debian"
 
-- name: Install openvpn
+- name: Install Packages
   package:
     name: "{{ item }}"
     state: present
@@ -26,3 +19,7 @@
     name: nogroup
     state: present
     system: true
+
+- name: Setup iptables
+  include_tasks: iptables.yml
+  when: ansible_os_family == "Debian"
