@@ -6,3 +6,4 @@ package_name_openssl: openssl
 package_name_openvpn: openvpn
 openvpn_subnet: "10.8.0.0/24"
 created_username: "lthn"
+ntp_manage_config: true
