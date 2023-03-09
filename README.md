@@ -44,7 +44,7 @@ This playbook will provision a VPN network to all hosts using the `vpn` group wi
 - Configure UFW firewall to allow OpenVPN traffic and GlusterFS traffic
 
 ```shell
-ansible-playbook setup-vpn.yml 
+make setup-vpn 
 ```
 
 ## Setup a Lethean Blockchain Explorer
@@ -60,7 +60,7 @@ This will provision the host with the following:
 - UFW Firewall
 - Postgres Database
 - adds SWAP
-- 
+- Supervisor to keep the explorer running
 ```shell
-ansible-playbook setup-explorer.yml 
+ make setup-explorer 
 ```

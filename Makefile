@@ -13,7 +13,7 @@ setup-explorer: ## Setup the explorer
 
 setup-vpn: ## Setup the VPN
 	@echo "Setting up the VPN..."
-	@ansible-playbook playbooks/vpn/setup.yml
+	@ansible-playbook setup-vpn.yml
 	@echo "Done!"
 
 help: ## Show this help
