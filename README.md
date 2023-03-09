@@ -64,3 +64,17 @@ This will provision the host with the following:
 ```shell
  make setup-explorer 
 ```
+
+## Setup a Lethean Blockchain Node
+Add your hosts to the `hosts/03-node.yml` file, you can use the same hosts as the VPN network, or different ones
+use the `hosts/chain.yml` file as a template, make sure you make a new file starting with a number so you can pull updates.
+
+This will provision the host with the following:
+
+- Lethean Blockchain Node
+- UFW Firewall
+- adds SWAP
+- Supervisor to keep the node running
+```shell
+ make setup-chain-lthn
+```
