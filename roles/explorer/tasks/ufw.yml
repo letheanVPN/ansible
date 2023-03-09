@@ -1,0 +1,25 @@
+- name: Allow HTTP connections - ufw
+  community.general.ufw:
+    direction: in
+    proto: "tcp"
+    to_port: "80"
+    rule: allow
+
+- name: Allow HTTPS connections - ufw
+  community.general.ufw:
+    direction: in
+    proto: "tcp"
+    to_port: "443"
+    rule: allow
+
+- name: Allow Explorer API connections - ufw
+  community.general.ufw:
+    direction: in
+    proto: "tcp"
+    to_port: "31211"
+    rule: allow
+
+- name: restart ufw
+  service:
+    name: ufw
+    state: restarted

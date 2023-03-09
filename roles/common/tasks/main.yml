@@ -26,3 +26,7 @@
     state: present
     regexp: '^#?PermitRootLogin'
     line: 'PermitRootLogin prohibit-password'
+
+- name: Adds Swap Space
+  ansible.builtin.include_role:
+    name: geerlingguy.swap

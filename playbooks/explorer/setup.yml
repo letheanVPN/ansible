@@ -1,0 +1,10 @@
+- hosts: explorer
+  collections:
+    - vultr.cloud
+  vars_files:
+    - ../../group_vars/main.yml
+    - ../../group_vars/explorer/main.yml
+  roles:
+    - ../../roles/common
+    - ../../roles/explorer
+

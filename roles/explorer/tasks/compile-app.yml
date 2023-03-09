@@ -1,0 +1,14 @@
+- name: Install NodeJS
+  ansible.builtin.include_role:
+    name: geerlingguy.nodejs
+
+- name: Install packages based on package.json.
+  npm:
+    path: /var/www/{{ explorer_domain }}
+
+- name: Build the application
+  command:
+    chdir: /var/www/{{ explorer_domain }}
+    cmd: npm run build:prod
+  environment:
+    - NODE_OPTIONS: "--max-old-space-size=8192"

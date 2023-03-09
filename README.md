@@ -15,6 +15,7 @@ choco install ansible
 You need to install the requirements for the playbooks to run, you can do this by running the following command:
 ```
 ansible-galaxy collection install -r requirements.yml
+ansible-galaxy role install -r requirements.yml
 ```
 
 ## Sign Up For Vultr or any other cloud provider
@@ -44,4 +45,22 @@ This playbook will provision a VPN network to all hosts using the `vpn` group wi
 
 ```shell
 ansible-playbook setup-vpn.yml 
+```
+
+## Setup a Lethean Blockchain Explorer
+Add your hosts to the `hosts/02-explorer.yml` file, you can use the same hosts as the VPN network, or different ones
+use the `hosts/explorer.yml` file as a template, make sure you make a new file starting with a number so you can pull updates.
+
+This will provision the host with the following:
+
+- Nginx Web Server
+- LetsEncrypt SSL Certificates with automatic renewal
+- NodeJS + npm
+- Lethean Blockchain Explorer
+- UFW Firewall
+- Postgres Database
+- adds SWAP
+- 
+```shell
+ansible-playbook setup-explorer.yml 
 ```

@@ -1,0 +1,22 @@
+- name: Install Certbot
+  community.general.snap:
+    name: certbot
+    classic: true
+
+- name: Create a symbolic link
+  ansible.builtin.file:
+    src: /snap/bin/certbot
+    dest: /usr/bin/certbot
+    state: link
+
+- name: Create LetEncryptSSL
+  command: certbot --nginx -d {{ item }} --non-interactive --agree-tos --email {{ dev_main_email }}
+  args:
+    creates: /etc/letsencrypt/live/{{ item }}/fullchain.pem
+  with_items:
+    - "{{ certbot_domains }}"
+  ignore_errors: True
+
+- name: Install nginx
+  ansible.builtin.include_role:
+    name: geerlingguy.nginx

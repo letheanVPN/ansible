@@ -1,0 +1,45 @@
+- name: Install Postgres
+  ansible.builtin.include_role:
+    name: geerlingguy.postgresql
+
+
+- name: Check lthn-explorer database already exists
+  become: yes
+  become_user: postgres
+  shell: psql -l | grep lthn-explorer-seeded
+  ignore_errors: true
+  register: my_database_db_existence
+
+- name: Seed Database
+  become: yes
+  become_user: postgres
+  community.postgresql.postgresql_db:
+    db: lthn-explorer
+    state: restore
+    target: /var/www/{{ explorer_domain }}/database.sql
+  when: my_database_db_existence.failed == true
+
+- name: Create seeded empty db so we dont reseed when the script re-runs
+  become: yes
+  become_user: postgres
+  postgresql_db:
+    name: lthn-explorer-seeded
+
+- name: Make sure user can connect to db
+  become: yes
+  become_user: postgres
+  postgresql_user:
+    db: lthn-explorer
+    name: lthn-explorer
+    password: ifthisisanissuetheissueisnotthatthisisknown
+    expires: infinity
+
+- name: Ensure we have access from the new user
+  become: yes
+  become_user: postgres
+  postgresql_privs:
+    state: present
+    db: lthn-explorer
+    role: lthn-explorer
+    objs: ALL_IN_SCHEMA
+    privs: ALL

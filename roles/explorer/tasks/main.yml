@@ -1,0 +1,46 @@
+- name: Install Packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - openssl
+    - ssl-cert
+    - snapd
+    - nginx
+
+- name: Setup UFW
+  import_tasks: ufw.yml
+
+- name: Setup Webserver
+  import_tasks: webserver.yml
+
+- name: Git checkout
+  ansible.builtin.git:
+    force: true
+    repo: "{{ explorer_repo }}"
+    dest: /var/www/{{ explorer_domain }}
+    version: "{{ explorer_branch }}"
+  register: repo_code
+
+- name: Register code_changed variable
+  set_fact:
+    code_changed: repo_code.changed
+
+- name: Setup Database
+  import_tasks: database.yml
+
+- name: Compile Application
+  import_tasks: compile-app.yml
+
+- name: Install PIP
+  ansible.builtin.include_role:
+    name: geerlingguy.pip
+
+- name: Install Supervisor
+  ansible.builtin.include_role:
+    name: geerlingguy.supervisor
+
+- name: Restart lthn-explorer
+  community.general.supervisorctl:
+    name: lthn-explorer
+    state: restarted

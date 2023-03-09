@@ -1,13 +1,1 @@
----
-iptables_save_command: "/etc/init.d/iptables-persistent save"
-package_name_iptables_persistent: iptables-persistent
-package_name_services: iptables-services
-package_name_openssl: openssl
-package_name_openvpn: openvpn
-openvpn_subnet: "10.8.0.0/24"
 created_username: "lthn"
-ntp_manage_config: true
-openvpn_firewall: auto
-openvpn_proto: udp
-openvpn_port: 4300
-vpn_main_nodes_ips: "{{ groups['vpn'] | map('extract', hostvars, ['ansible_all_ipv4_addresses']) | flatten }}"
