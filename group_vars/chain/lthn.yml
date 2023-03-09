@@ -1,0 +1,30 @@
+
+supervisor_programs:
+  - name: 'lthn-chain'
+    command: letheand --enable-offers-service --allow-local-ip --p2p-bind-ip={{ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0])}} --rpc-bind-ip={{ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0])}}
+    state: present
+    configuration: |
+      autostart=true
+      autorestart=true
+      startretries=1
+      startsecs=1
+      redirect_stderr=true
+      stderr_logfile=/var/log/lthn-chain-err.log
+      stdout_logfile=/var/log/lthn-chain.log
+      user=root
+      killasgroup=true
+      stopasgroup=true
+  - name: 'lthn-chain-relay'
+    command: letheand --enable-offers-service --allow-local-ip --p2p-bind-port 12345 --rpc-bind-port 123456
+    state: present
+    configuration: |
+      autostart=true
+      autorestart=true
+      startretries=1
+      startsecs=1
+      redirect_stderr=true
+      stderr_logfile=/var/log/lthn-chain-relay-err.log
+      stdout_logfile=/var/log/lthn-chain-relay.log
+      user=root
+      killasgroup=true
+      stopasgroup=true

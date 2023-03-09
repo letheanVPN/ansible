@@ -1,0 +1,10 @@
+- hosts: chain_lthn
+  collections:
+    - vultr.cloud
+  vars_files:
+    - ../../../group_vars/main.yml
+    - ../../../group_vars/chain/lthn.yml
+  roles:
+    - ../../../roles/common
+    - ../../../roles/chain/lthn
+

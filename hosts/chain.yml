@@ -1,0 +1,6 @@
+# Example: hosts/explorer.yml.example comment out and replace dev.lthn.network with your hostname
+#
+#chain_lthn:
+#  hosts:
+#    dev.lthn.network:
+#      ansible_user: root

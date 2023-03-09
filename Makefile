@@ -12,8 +12,13 @@ setup-explorer: ## Setup the explorer
 	@echo "Done!"
 
 setup-vpn: ## Setup the VPN
-	@echo "Setting up the VPN..."
+	@echo "Setting up the Lethean Chain Node..."
 	@ansible-playbook setup-vpn.yml
+	@echo "Done!"
+
+setup-chain-lthn: ## Setup Lethean Chain Node
+	@echo "Setting up the LTHN chain..."
+	@ansible-playbook playbooks/chain/lthn/setup.yml
 	@echo "Done!"
 
 help: ## Show this help

@@ -1,0 +1,49 @@
+- name: Install Packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - openssl
+    - ssl-cert
+
+- name: Grab release latest binaries
+  unarchive:
+    src: "https://github.com/letheanVPN/blockchain-iTw3/releases/latest/download/lethean-linux-cli-x64-testnet.tar.bz2"
+    dest: /usr/local/bin
+    remote_src: true
+    creates: /usr/local/bin/lethean
+
+- name: Allow chain P2P - ufw
+  community.general.ufw:
+    direction: in
+    proto: "tcp"
+    to_port: "31211"
+    rule: allow
+  ignore_errors: True
+
+- name: Allow chain P2P - ufw
+  community.general.ufw:
+    direction: in
+    proto: "tcp"
+    to_port: "31212"
+    rule: allow
+  ignore_errors: True
+
+- name: restart ufw
+  service:
+    name: ufw
+    state: restarted
+  ignore_errors: True
+
+- name: Install PIP
+  ansible.builtin.include_role:
+    name: geerlingguy.pip
+
+- name: Install Supervisor
+  ansible.builtin.include_role:
+    name: geerlingguy.supervisor
+
+- name: Restart lthn-chain
+  community.general.supervisorctl:
+    name: lthn-chain
+    state: restarted
