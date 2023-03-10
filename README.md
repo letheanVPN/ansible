@@ -78,3 +78,20 @@ This will provision the host with the following:
 ```shell
  make setup-chain-lthn
 ```
+
+## Setup Observium
+Add your hosts to the `hosts/04-observium.yml` file, you can use the same hosts as the VPN network, or different ones
+use the `hosts/observium.yml` file as a template, make sure you make a new file starting with a number so you can pull updates.
+
+This will provision the host with the following:
+
+- Observium
+- Nginx Web Server
+- LetsEncrypt SSL Certificates with automatic renewal
+- UFW Firewall
+- adds SWAP
+- mysql database
+- php-fpm
+```shell
+ make setup-monitoring
+```
