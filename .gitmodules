@@ -1,3 +1,6 @@
 [submodule "roles/observium"]
 	path = roles/observium
 	url = git@github.com:Snider/ansible-observium.git
+[submodule "roles/server_base"]
+	path = roles/server_base
+	url = git@github.com:dAppServer/ansible-server-base.git

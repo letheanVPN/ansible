@@ -5,6 +5,6 @@
     - ../../group_vars/all.yml
     - ../../group_vars/explorer/main.yml
   roles:
-    - snider.server_base
+    - ../../roles/server_base
     - ../../roles/explorer
 

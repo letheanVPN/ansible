@@ -5,7 +5,7 @@
     - ../../group_vars/all.yml
     - ../../group_vars/vpn/main.yml
   roles:
-    - snider.server_base
+    - ../../roles/server_base
     - geerlingguy.glusterfs
     - ../../roles/openvpn
 
