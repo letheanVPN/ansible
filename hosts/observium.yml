@@ -1,0 +1,9 @@
+#observium:
+#  hosts:
+#    dev.lthn.network:
+#      ansible_user: root
+#      observium_commercial: false
+#      observium_commercial_svn_user: ""
+#      observium_commercial_svn_password: ""
+#      observium_domain: "monitoring.dev.lthn.network"
+#      observium_dl_dir: "/var/www/{{ observium_domain }}"
