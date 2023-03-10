@@ -11,7 +11,7 @@ setup-monitoring: ## Setup the monitoring
 	@ansible-playbook playbooks/observium/setup.yml
 	@echo "Done!"
 
-setup-monitoring: ## Setup the monitoring agent
+setup-monitoring-agent: ## Setup the monitoring agent
 	@echo "Setting up the monitoring..."
 	@ansible-playbook playbooks/observium_agent/setup.yml
 	@echo "Done!"
