@@ -1,0 +1,48 @@
+
+certbot_domains:
+  - "{{ observium_domain }}"
+php_webserver_daemon: "nginx"
+php_enable_php_fpm: true
+php_packages_extra:
+  - php-gd
+  - php-mysqli
+
+mysql_root_password_update: true
+nginx_listen_ipv6: true
+nginx_remove_default_vhost: true
+nginx_server_tokens: "off"
+nginx_vhosts:
+  - listen: "80"
+    server_name: "{{ observium_domain }}"
+    return: "301 https://{{ observium_domain }}$request_uri"
+    filename: "{{ observium_domain }}.80.conf"
+  - listen: "443 ssl http2"
+    server_name: "{{ observium_domain }}"
+    root: "/var/www/{{ observium_domain }}/observium/html"
+    index: "index.php index.html index.htm"
+    state: "present"
+    filename: "{{ observium_domain }}.conf"
+    nginx_client_max_body_size: "10m"
+    nginx_extra_http_options: |
+      client_body_buffer_size 8K;
+      client_header_buffer_size 1k;
+      large_client_header_buffers 4 8k;
+    extra_parameters: |
+      try_files $uri $uri/ /index.php;
+      location ~ \.php$ {
+          fastcgi_split_path_info ^(.+\.php)(/.+)$;
+          fastcgi_pass 127.0.0.1:9000;
+          fastcgi_index index.php;
+          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+          include fastcgi_params;
+      }
+      location ~ /\.ht {
+          deny all;
+      }
+      ssl_certificate     /etc/letsencrypt/live/{{ observium_domain }}/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/{{ observium_domain }}/privkey.pem;
+      ssl_certificate     /etc/letsencrypt/live/{{ observium_domain }}/fullchain.pem; # managed by Certbot
+      ssl_certificate_key /etc/letsencrypt/live/{{ observium_domain }}/privkey.pem; # managed by Certbot
+      include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+      ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+

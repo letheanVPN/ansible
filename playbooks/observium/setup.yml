@@ -1,0 +1,10 @@
+- hosts: observium
+  collections:
+    - vultr.cloud
+  vars_files:
+    - ../../group_vars/all.yml
+    - ../../group_vars/observium/main.yml
+  roles:
+    - ../../roles/server_base
+    - ../../roles/observium
+

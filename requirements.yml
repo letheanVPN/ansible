@@ -12,3 +12,6 @@ roles:
   - name: geerlingguy.supervisor
   - name: geerlingguy.swap
   - name: geerlingguy.pip
+  - name: geerlingguy.php
+  - name: geerlingguy.mysql
+  - name: teadur.observium-agent

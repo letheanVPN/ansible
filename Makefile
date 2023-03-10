@@ -6,6 +6,11 @@ install: ## Install the project
 	@ansible-galaxy role install -r requirements.yml
 	@echo "Done!"
 
+setup-monitoring: ## Setup the monitoring
+	@echo "Setting up the monitoring..."
+	@ansible-playbook playbooks/observium/setup.yml
+	@echo "Done!"
+
 setup-explorer: ## Setup the explorer
 	@echo "Setting up the explorer..."
 	@ansible-playbook playbooks/explorer/setup.yml
