@@ -3,6 +3,7 @@ collections:
   - name: ansible.posix
   - name: community.general
 roles:
+  - name: snider.server_base
   - name: geerlingguy.ntp
   - name: geerlingguy.glusterfs
   - name: geerlingguy.nginx

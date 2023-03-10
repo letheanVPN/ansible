@@ -5,6 +5,6 @@
     - ../../../group_vars/all.yml
     - ../../../group_vars/chain/lthn.yml
   roles:
-    - ../../../roles/common
+    - snider.server_base
     - ../../../roles/chain/lthn
 
