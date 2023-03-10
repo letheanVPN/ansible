@@ -1,10 +1,11 @@
-- hosts: explorer
+- hosts: vpn
   collections:
     - vultr.cloud
   vars_files:
     - ../../group_vars/all.yml
-    - ../../group_vars/explorer/main.yml
+    - ../../group_vars/vpn/main.yml
   roles:
     - ../../roles/common
-    - ../../roles/explorer
+    - geerlingguy.glusterfs
+    - ../../roles/openvpn
 

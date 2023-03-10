@@ -30,3 +30,10 @@
 - name: Adds Swap Space
   ansible.builtin.include_role:
     name: geerlingguy.swap
+
+- name: Installing NTP on each host with timezone settings below
+  debug: msg="{{ ntp_timezone }} {{ ntp_area }} {{ created_username }}"
+
+- name: Configure NTP
+  ansible.builtin.include_role:
+    name: geerlingguy.ntp
