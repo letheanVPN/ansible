@@ -1,3 +1,5 @@
+observium_config_geo_api: "openstreetmap"
+
 
 certbot_domains:
   - "{{ observium_domain }}"
