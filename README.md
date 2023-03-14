@@ -44,7 +44,8 @@ This playbook will provision a VPN network to all hosts using the `vpn` group wi
 - Configure UFW firewall to allow OpenVPN traffic and GlusterFS traffic
 
 ```shell
-make setup-vpn 
+make setup-vpn # Provisions the VPN network
+make update-vpn # Updates the VPN configuration & Shell scripts
 ```
 
 ## Setup a Lethean Blockchain Explorer

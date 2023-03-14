@@ -26,6 +26,11 @@ setup-vpn: ## Setup the VPN
 	@ansible-playbook playbooks/vpn/setup.yml
 	@echo "Done!"
 
+update-vpn: ## Update the VPN Config and Scripts
+	@echo "Setting up the VPN Network..."
+	@ansible-playbook playbooks/vpn/setup.yml --tags openvpn:bin,openvpn:config
+	@echo "Done!"
+
 setup-chain-lthn: ## Setup Lethean Chain Node
 	@echo "Setting up the LTHN chain..."
 	@ansible-playbook playbooks/chain/lthn/setup.yml
