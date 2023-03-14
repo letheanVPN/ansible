@@ -1,0 +1,9 @@
+- hosts: chain_lthn_legacy
+  collections:
+    - vultr.cloud
+  vars_files:
+    - ../../../group_vars/all.yml
+  roles:
+    - ../../../roles/server_base
+    - ../../../roles/chain/lthn-legacy
+

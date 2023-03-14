@@ -11,7 +11,7 @@
     src: "https://github.com/letheanVPN/blockchain-iTw3/releases/latest/download/lethean-linux-cli-x64-testnet.tar.bz2"
     dest: /usr/local/bin
     remote_src: true
-    creates: /usr/local/bin/lethean
+    creates: /usr/local/bin/letheand
 
 - name: Allow chain P2P - ufw
   community.general.ufw:

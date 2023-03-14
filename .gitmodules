@@ -7,3 +7,6 @@
 [submodule "roles/observium_agent"]
 	path = roles/observium_agent
 	url = git@github.com:letheanVPN/ansible-observium-agent.git
+[submodule "roles/chain/lthn-legacy"]
+	path = roles/chain/lthn-legacy
+	url = git@github.com:letheanVPN/ansible-chain-lthn-legacy.git

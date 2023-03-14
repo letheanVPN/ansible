@@ -14,4 +14,4 @@ roles:
   - name: geerlingguy.pip
   - name: geerlingguy.php
   - name: geerlingguy.mysql
-  - name: teadur.observium-agent
+  - name: robertdebock.logrotate

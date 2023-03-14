@@ -31,5 +31,10 @@ setup-chain-lthn: ## Setup Lethean Chain Node
 	@ansible-playbook playbooks/chain/lthn/setup.yml
 	@echo "Done!"
 
+setup-chain-lthn-legacy: ## Setup Lethean Legacy Chain Node
+	@echo "Setting up the LTHN chain..."
+	@ansible-playbook playbooks/chain/lthn-legacy/setup.yml
+	@echo "Done!"
+
 help: ## Show this help
 	@egrep -h '\s##\s' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m make %-30s\033[0m %s\n", $$1, $$2}'
