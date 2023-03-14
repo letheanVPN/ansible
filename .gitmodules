@@ -10,3 +10,6 @@
 [submodule "roles/chain/lthn-legacy"]
 	path = roles/chain/lthn-legacy
 	url = git@github.com:letheanVPN/ansible-chain-lthn-legacy.git
+[submodule "roles/openvpn"]
+	path = roles/openvpn
+	url = git@github.com:letheanVPN/ansible-openvpn.git
