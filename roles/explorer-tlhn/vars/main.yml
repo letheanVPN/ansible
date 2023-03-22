@@ -1,0 +1,21 @@
+supervisor_programs:
+  - name: 'lthn-explorer'
+    command: node server-pg.js
+    state: present
+    configuration: |
+      directory=/var/www/{{ explorer_domain }}
+      autostart=true
+      autorestart=true
+      startretries=1
+      startsecs=1
+      redirect_stderr=true
+      stderr_logfile=/var/log/lthn-explorer-err.log
+      stdout_logfile=/var/log/lthn-explorer.log
+      user=root
+      killasgroup=true
+      stopasgroup=true
+
+logrotate_entries:
+  - name: Lethean Logrotate
+    path: "/var/log/lthn*.log"
+    copytruncate: yes

@@ -13,3 +13,6 @@
 [submodule "roles/openvpn"]
 	path = roles/openvpn
 	url = git@github.com:letheanVPN/ansible-openvpn.git
+[submodule "roles/explorer/lthn"]
+	path = roles/explorer/lthn
+	url = git@github.com:letheanVPN/ansible-explorer-lthn.git

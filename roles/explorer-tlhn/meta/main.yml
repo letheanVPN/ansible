@@ -1,0 +1,9 @@
+galaxy_info:
+  author: snider
+  role_name: explorer_lthn
+  description: Installs Lethean Explorer with Nginx and PHP-FPM
+  company: Lethean Community Interest Company
+  license: EUPL-1.2
+  min_ansible_version: "2.1"
+  galaxy_tags: []
+dependencies: []
