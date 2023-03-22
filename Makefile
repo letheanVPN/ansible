@@ -16,9 +16,9 @@ setup-monitoring-agent: ## Setup the monitoring agent
 	@ansible-playbook playbooks/observium_agent/setup.yml
 	@echo "Done!"
 
-setup-explorer: ## Setup the explorer
+setup-explorer-lthn: ## Setup the explorer
 	@echo "Setting up the explorer..."
-	@ansible-playbook playbooks/explorer/setup.yml
+	@ansible-playbook playbooks/explorer/lthn/setup.yml
 	@echo "Done!"
 
 setup-vpn: ## Setup the VPN

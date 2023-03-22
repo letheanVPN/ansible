@@ -1,10 +1,8 @@
 - hosts: explorer
-  collections:
-    - vultr.cloud
   vars_files:
     - ../../group_vars/all.yml
     - ../../group_vars/explorer/main.yml
   roles:
     - ../../roles/server_base
-    - ../../roles/explorer
+    - ../../roles/explorer/lthn
 
