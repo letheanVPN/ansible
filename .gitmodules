@@ -16,3 +16,6 @@
 [submodule "roles/explorer/lthn"]
 	path = roles/explorer/lthn
 	url = git@github.com:letheanVPN/ansible-explorer-lthn.git
+[submodule "roles/squid"]
+	path = roles/squid
+	url = https://github.com/mrlesmithjr/ansible-squid.git
