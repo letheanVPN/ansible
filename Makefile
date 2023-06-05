@@ -23,12 +23,12 @@ setup-explorer-lthn: ## Setup the explorer
 
 setup-vpn: ## Setup the VPN
 	@echo "Setting up the VPN Network..."
-	@ansible-playbook playbooks/vpn/setup.yml
+	@ansible-playbook playbooks/networking/vpn.yml
 	@echo "Done!"
 
 update-vpn: ## Update the VPN Config and Scripts
 	@echo "Setting up the VPN Network..."
-	@ansible-playbook playbooks/vpn/setup.yml --tags openvpn:bin,openvpn:config
+	@ansible-playbook playbooks/networking/vpn.yml --tags openvpn:bin,openvpn:config
 	@echo "Done!"
 
 setup-chain-lthn: ## Setup Lethean Chain Node
@@ -39,6 +39,11 @@ setup-chain-lthn: ## Setup Lethean Chain Node
 setup-chain-lthn-legacy: ## Setup Lethean Legacy Chain Node
 	@echo "Setting up the LTHN chain..."
 	@ansible-playbook playbooks/chain/lthn-legacy/setup.yml
+	@echo "Done!"
+
+install-squid: ## Installs squid
+	@echo "Setting up Squid Proxy Server..."
+	@ansible-playbook playbooks/networking/squid.yml
 	@echo "Done!"
 
 help: ## Show this help
