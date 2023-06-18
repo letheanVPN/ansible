@@ -16,6 +16,11 @@ setup-monitoring-agent: ## Setup the monitoring agent
 	@ansible-playbook playbooks/observium_agent/setup.yml
 	@echo "Done!"
 
+register-monitoring-agent: ## Setup the monitoring agent
+	@echo "Setting up the monitoring..."
+	@ansible-playbook playbooks/observium_agent/setup.yml --tags observium_agent:register
+	@echo "Done!"
+
 setup-explorer-lthn: ## Setup the explorer
 	@echo "Setting up the explorer..."
 	@ansible-playbook playbooks/explorer/lthn/setup.yml
@@ -31,6 +36,16 @@ update-vpn: ## Update the VPN Config and Scripts
 	@ansible-playbook playbooks/networking/vpn.yml --tags openvpn:bin,openvpn:config
 	@echo "Done!"
 
+install-vpn-lite: ## Update the VPN Config and Scripts
+	@echo "Setting up the VPN Network..."
+	@ansible-playbook playbooks/networking/vpn-lite.yml
+	@echo "Done!"
+
+install-miners-xmrig: ## Setup XMRig
+	@echo "Setting up xmrig..."
+	@ansible-playbook playbooks/miners/xmrig.yml
+	@echo "Done!"
+
 setup-chain-lthn: ## Setup Lethean Chain Node
 	@echo "Setting up the LTHN chain..."
 	@ansible-playbook playbooks/chain/lthn/setup.yml
@@ -44,6 +59,11 @@ setup-chain-lthn-legacy: ## Setup Lethean Legacy Chain Node
 install-squid: ## Installs squid
 	@echo "Setting up Squid Proxy Server..."
 	@ansible-playbook playbooks/networking/squid.yml
+	@echo "Done!"
+
+install-keycloak: ## Installs Tyk
+	@echo "Setting up KeyCloak Auth Server..."
+	@ansible-playbook playbooks/networking/keycloak.yml
 	@echo "Done!"
 
 help: ## Show this help

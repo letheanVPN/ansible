@@ -1,0 +1,9 @@
+- hosts: vpn
+  gather_facts: true
+  roles:
+    - role: kyl191.openvpn
+      openvpn_port: 4300
+      openvpn_sync_certs: true
+      clients:
+        - client1
+        - client2

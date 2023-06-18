@@ -1,0 +1,26 @@
+# mandatory
+keycloak__apps__apps__host_var:
+  - name: 'java-17-openjdk'
+    state: 'present'
+keycloak__admin_login:
+  password: 'password'
+  username: 'keycloak-admin'
+keycloak__db_login:
+  password: 'password'
+  username: 'keycloak'
+keycloak__hostname: 'auth.quasimemory.com'
+keycloak__version: '18.0.0'
+
+# optional
+keycloak__db_url_host: 'localhost'
+keycloak__db_url_database: 'keycloak'
+keycloak__db_url: 'jdbc:mariadb://localhost/keycloak/'
+keycloak__db_vendor: 'mariadb'
+keycloak__expose_healthcheck_endpoints: 'true'
+keycloak__expose_metrics_endpoints: 'true'
+keycloak__https_protocols: 'TLSv1.3,TLSv1.2'
+keycloak__https_cipher_suites: 'TLS_RSA_WITH_AES_128_GCM_SHA256'
+keycloak__log: 'file'
+keycloak__log_file: '/var/log/keycloak/keycloak.log'
+keycloak__mode: 'production'
+keycloak__proxy_mode: 'edge'

@@ -1,0 +1,16 @@
+
+supervisor_programs:
+  - name: 'miners-xmrig'
+    command: "xmrig -o {{mining_endpoint}} -t $(nproc)"
+    state: present
+    configuration: |
+      autostart=true
+      autorestart=true
+      startretries=1
+      startsecs=1
+      redirect_stderr=true
+      stderr_logfile=/var/log/miners-xmrig-err.log
+      stdout_logfile=/var/log/miners-xmrig.log
+      user=root
+      killasgroup=true
+      stopasgroup=true

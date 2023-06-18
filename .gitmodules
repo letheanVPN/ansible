@@ -19,3 +19,6 @@
 [submodule "roles/squid"]
 	path = roles/squid
 	url = https://github.com/mrlesmithjr/ansible-squid.git
+[submodule "roles/tyk-ansible"]
+	path = roles/tyk-ansible
+	url = https://github.com/TykTechnologies/tyk-ansible

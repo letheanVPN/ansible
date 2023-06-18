@@ -1,0 +1,21 @@
+- hosts: vpn
+  gather_facts: true
+  roles:
+    - role: kyl191.openvpn
+      openvpn_port: 4300
+      openvpn_sync_certs: true
+      openvpn_fetch_client_configs: true
+      openvpn_fetch_client_configs_dir: /Users/snider/PycharmProjects/ansible/certs
+      openvpn_masquerade_not_snat: true
+      openvpn_client_to_client: true
+      openvpn_dualstack: false
+      openvpn_subnet: "10.8.0.0/24"
+      ntp_manage_config: true
+      openvpn_firewall: auto
+      openvpn_proto: udp
+      openvpn_custom_dns:
+        - 8.8.8.8
+        - 8.8.4.4
+      clients:
+        - client1
+        - client2

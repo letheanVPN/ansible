@@ -2,6 +2,8 @@
   vars_files:
     - ../../group_vars/all.yml
     - ../../group_vars/networking/squid.yml
+  roles:
+    - ../../roles/server_base
   tasks:
     - name: Install Squid
       ansible.builtin.shell:
@@ -14,14 +16,5 @@
       ansible.builtin.shell:
       args:
         cmd: |
-          /usr/bin/htpasswd -b /etc/squid/passwd {{ proxy_username }} {{ proxy_password }}
+          /usr/bin/htpasswd -bc /etc/squid/passwd {{ proxy_username }} {{ proxy_password }}
           systemctl reload squid
-    - name: Adds Swap Space
-      ansible.builtin.include_role:
-        name: geerlingguy.swap
-    - name: Disable password authentication for root
-      lineinfile:
-        path: /etc/ssh/sshd_config
-        state: present
-        regexp: '^#?PermitRootLogin'
-        line: 'PermitRootLogin prohibit-password'

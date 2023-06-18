@@ -1,0 +1,10 @@
+- hosts: chain_lthn
+  collections:
+    - vultr.cloud
+  vars_files:
+    - ../../../group_vars/all.yml
+    - ../../../group_vars/miners/xmrig.yml
+  roles:
+    - ../../../roles/server_base
+    - ../../../roles/miners/xmrig
+

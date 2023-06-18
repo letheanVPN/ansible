@@ -1,0 +1,8 @@
+- hosts: auth-server
+  vars:
+    keycloak_admin_password: "remembertochangeme"
+  vars_files:
+    - ../../group_vars/all.yml
+    - ../../group_vars/networking/squid.yml
+  roles:
+    - middleware_automation.keycloak.keycloak
